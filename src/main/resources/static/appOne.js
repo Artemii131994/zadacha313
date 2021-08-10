@@ -38,7 +38,7 @@ addPostForm.addEventListener('submit', (e) => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
-                    return postsList(data)
+                    return renderPosts(data)
                 })
         })
         // .then(res => res.json())
