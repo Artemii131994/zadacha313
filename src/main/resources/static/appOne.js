@@ -4,7 +4,6 @@ const addPostForm = document.querySelector("#addNewUser")
 addPostForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // $('.AddBtn').on('click', function () {
     let user = {
         firstname: $("#firstname").val(),
         lastname: $("#lastname").val(),
@@ -19,7 +18,7 @@ addPostForm.addEventListener('submit', (e) => {
         // email: document.getElementById("email").value,
         // password: document.getElementById("password").value,
         // roles:
-        // id: 62, name: "ROLE_ADMIN", users: null, authority: "ROLE_ADMIN"
+
 
     }
     console.log(user);
@@ -34,10 +33,13 @@ addPostForm.addEventListener('submit', (e) => {
             addPostForm.innerHTML = "";
             output = "";
 
+            document.getElementById('admin-tab').click();
+
             fetch("/allUsers")
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
+
                     return renderPosts(data)
                 })
         })
@@ -97,3 +99,4 @@ const urlList = '/allUsers';
 fetch(urlList)
     .then(res => res.json())
     .then(data => renderPosts(data))
+
