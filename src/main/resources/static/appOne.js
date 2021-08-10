@@ -1,24 +1,25 @@
 const addPostForm = document.querySelector("#addNewUser")
-// const firstname = document.getElementById("name")
-// const lastname = document.getElementById("name2")
-// const age = document.getElementById("age")
-// const email = document.getElementById("email")
-// const password = document.getElementById("password")
-// const roles = setRoles(Array.from(document.getElementById("roles").selectedOptions)
-//     .map(option => option.value));
+
 
 addPostForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // $('.AddBtn').on('click', function () {
     let user = {
-        firstName: $("#firstname").val(),
-        lastName: $("#lastName").val(),
+        firstname: $("#firstname").val(),
+        lastname: $("#lastname").val(),
         age: $("#age").val(),
         email: $("#email").val(),
         password: $("#password").val(),
-        roles: setRoles(Array.from(document.getElementById("roles").selectedOptions)
-                .map(option => option.value))
+        roles: [{id: 1, name: "ROLE_ADMIN", users: null, authority: "ROLE_ADMIN"}]
+                // [{id: 2, name: "ROLE_USER", users: null, authority: "ROLE_USER"}]
+        // firstName: document.getElementById("firstname").value,
+        // lastName: document.getElementById("lastname").value,
+        // age: document.getElementById("age").value,
+        // email: document.getElementById("email").value,
+        // password: document.getElementById("password").value,
+        // roles:
+        // id: 62, name: "ROLE_ADMIN", users: null, authority: "ROLE_ADMIN"
 
     }
     console.log(user);
@@ -29,12 +30,26 @@ addPostForm.addEventListener('submit', (e) => {
         },
         body: JSON.stringify(user)
     })
-        .then(res => res.json())
-        .then(data => {
-            const dataArr = [];
-            dataArr.push(data);
-            renderPosts(dataArr);
+        .then(() =>{
+            addPostForm.innerHTML = "";
+            output = "";
+
+            fetch("/allUsers")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    return postsList(data)
+                })
         })
+        // .then(res => res.json())
+        // .then(data => {
+        //
+        //     console.log(data)
+        //     return renderPosts(data)
+        //     // const dataArr = [];
+        //     // dataArr.push(data);
+        //     // renderPosts(dataArr);
+        // })
     // })
 })
 
