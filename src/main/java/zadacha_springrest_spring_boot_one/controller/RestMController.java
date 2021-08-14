@@ -52,7 +52,7 @@ public class RestMController {
     }
 
 
-    @PutMapping("/updateSave")
+    @PutMapping("/updateSave/{id}")
     public User edit(@RequestBody User user) {
 //        userServiceDao.byRole(user, role);
          userServiceDao.update(user);
