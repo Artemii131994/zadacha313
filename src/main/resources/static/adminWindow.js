@@ -1,12 +1,11 @@
 const addPostForm = document.querySelector("#addNewUser")
-const editPustForm = document.querySelector(".myFormModel")
 const editSubmit = document.querySelector('.editButton')
 const allUsers = document.querySelector('.all-users')
 const deleteSubmit = document.querySelector('.deleteButton')
 
+                                                    //ADD
 
 addPostForm.addEventListener('submit', (e) => {
-    const editId = e.target.parentElement.parentElement.dataset.id
     e.preventDefault();
 
     let setRoles =(someRoles) => {
@@ -59,12 +58,8 @@ addPostForm.addEventListener('submit', (e) => {
         document.getElementById("editPassword").value = '',
         document.getElementById("editRoles").value = ''
 
-    // document.getElementById("delName").value = '',
-    //     document.getElementById("delName2").value = '',
-    //     document.getElementById("delAge").value = '',
-    //     document.getElementById("delEmail").value = '',
-    //     document.getElementById("delRoles").value = ''
 })
+                                                        //LIST
 
 const postsList = document.querySelector("#app");
 let output = '';
@@ -83,57 +78,35 @@ const renderPosts = (posts) =>{
                             <td class="main-age" id="main-age-${post.id}">${post.age}</td>
                             <td class="main-email" id="main-email-${post.id}">${post.email}</td>
                             <td class="main-userRole" id="main-userRole-${post.id}">${userRole}</td>
-                            
+                           
                             <td>
-                            
-                          
                             <button type="button" class="btn btn-info eBtn" 
                             data-toggle="modal" data-target='#editUser' id="edit-post">Edit
                             </button>
-                           
-                           
-                               </td>
+                            </td>
                             <td>
                             <button type="button" class="btn btn-danger " 
                             data-toggle="modal" data-target='#delUser' id="delete-post">Delete
                             </button>
-                            
                             </td></tr>`
     });
     postsList.innerHTML = output;
 }
 
-const urlList = '/allUsers';
-
-//Method GET
-
-fetch(urlList)
+fetch('/allUsers')
     .then(res => res.json())
     .then(data => renderPosts(data))
 
-const urldel = '/deleteUser/';
-const urlUpd = '/updateSave/';
-
-
+                                            //TABLE_USERS - EDIT - DELETE
 
 allUsers.addEventListener('click', (e) => {
-
          e.preventDefault();
 
         let delButtonIsPressed = e.target.id == 'delete-post';
         let editButtonIsPressed = e.target.id == 'edit-post';
-    //console.log("click54",console.log(id))
-    console.log("click7", e.target.parentElement.parentElement.dataset.id)
 
-    console.log("click0", e.target.id)
-    // console.log("click1", e.target.dataset.id)
-    // console.log("click2", e.target.parentElement.dataset.id)
+                                // DELETE
 
-    console.log("click8", e.target.parentElement.dataset.id)
-
-
-
-       // DELETE
         if (delButtonIsPressed) {
             let setRoles =(someRoles) => {
                 let roles = [];
@@ -147,37 +120,26 @@ allUsers.addEventListener('click', (e) => {
             }
 
             const parent = e.target.parentElement.parentElement;
-             //let id = parent.querySelector('.main-id').textContent;
+
             let id = e.target.parentElement.parentElement.dataset.id;
             let firstname = parent.querySelector('.main-firstname').textContent;
-            //console.log("click54",id)
             let lastname = parent.querySelector('.main-lastname').textContent;
             let age = parent.querySelector('.main-age').textContent;
             let email = parent.querySelector('.main-email').textContent;
             let role = parent.querySelector('.main-userRole').textContent;
-            // const id = parent.querySelector('.main-id').textContent
-            // let id =e.target.parentElement.parentElement.dataset.id;
 
+                DELId = e.target.parentElement.parentElement.dataset.id
 
-            DELId = e.target.parentElement.parentElement.dataset.id
-
-          //  console.log("click3", role)
-            //document.getElementById("delId").value=id,
-            //let delID = document.getElementById("delId").value
-            document.getElementById("delId").value = DELId
+                document.getElementById("delId").value = DELId
                 document.getElementById("delName").value = firstname,
                 document.getElementById("delName2").value = lastname,
                 document.getElementById("delAge").value = age,
                 document.getElementById("delEmail").value = email
-
-            // document.getElementById("editPassword").value = password
-            document.getElementById("delRoles").value = role
-          // const select = document.getElementById('delRoles').getElementsByTagName('option')
+                document.getElementById("delRoles").value = role
 
         }
 
-
-    //const editId = e.target.parentElement.parentElement.dataset.id
+                                            //EDIT
 
     if(editButtonIsPressed){
 
@@ -193,59 +155,42 @@ allUsers.addEventListener('click', (e) => {
         }
 
             const parent = e.target.parentElement.parentElement;
-            // let id = parent.querySelector('.main-id').textContent;
+
         let id = e.target.parentElement.parentElement.dataset.id;
         let firstname = parent.querySelector('.main-firstname').textContent;
-            console.log("click54",id)
-            let lastname = parent.querySelector('.main-lastname').textContent;
-            let age = parent.querySelector('.main-age').textContent;
-           let email = parent.querySelector('.main-email').textContent;
-            let role = parent.querySelector('.main-userRole').textContent;
-            // const id = parent.querySelector('.main-id').textContent
-            // let id =e.target.parentElement.parentElement.dataset.id;
-
+        let lastname = parent.querySelector('.main-lastname').textContent;
+        let age = parent.querySelector('.main-age').textContent;
+        let email = parent.querySelector('.main-email').textContent;
+        let role = parent.querySelector('.main-userRole').textContent;
 
         editId = e.target.parentElement.parentElement.dataset.id
 
-            console.log("click3", role)
-            let fetchID = document.getElementById("id").value
-            document.getElementById("id").value = editId,
-                document.getElementById("editName").value = firstname,
-                document.getElementById("editName2").value = lastname,
-                document.getElementById("editAge").value = age,
-                document.getElementById("editEmail").value = email
+        let fetchID = document.getElementById("id").value
 
-                // document.getElementById("editPassword").value = password
-                 document.getElementById("editRoles").value = role
-            const select = document.getElementById('editRoles').getElementsByTagName('option')
-        // const select = setRoles(Array.from(document.querySelector('#editRoles').selectedOptions)
-        //     .map(option => option.value))
-           // let id =e.target.parentElement.parentElement.dataset.id;
-
-            // let selectedRoles = setRoles(Array.from(document.querySelector('#editRoles').selectedOptions)
-            //     .map(option => option.value))
+        document.getElementById("id").value = editId,
+        document.getElementById("editName").value = firstname,
+        document.getElementById("editName2").value = lastname,
+        document.getElementById("editAge").value = age,
+        document.getElementById("editEmail").value = email
+        document.getElementById("editRoles").value = role
+        const select = document.getElementById('editRoles').getElementsByTagName('option')
 
             const arrayOfRoles = role.trim().split(' ');
             for(let i of arrayOfRoles) {
                 if (i === 'ROLE_USER') {
-                    // console.log("click4")
                     select[0].selected = true;
-                    // console.log("click5")
                 } else if (i === 'ROLE_ADMIN') {
                     select[1].selected = true;
-                    // console.log("click6")
                 }
             }
-
-           console.log("click6", arrayOfRoles)
-
         }
-
 })
-//----------------------------------------------edit
+                                                        //EDITSUBMIT
+
 editSubmit.addEventListener( 'click', (e) =>{
     modalEdit(e);
 })
+                                                        //EDIT
 function modalEdit(e){
     e.preventDefault();
 
@@ -272,8 +217,6 @@ function modalEdit(e){
 
     }
 
-    console.log('id ', id);
-    console.log('urlUpd ', ('/updateSave/' + id));
     fetch( '/updateSave/${fetchID}', {
         method: 'PUT',
         headers: {
@@ -285,10 +228,12 @@ function modalEdit(e){
         .then(res => res.json())
         .then(() => location.reload())
 }
-//----------------------------------------------delete
+                                                            //DELETESUBMIT
+
 deleteSubmit.addEventListener( 'click', (e) =>{
     modaldelete(e);
 })
+                                                            // DELETE
 function modaldelete(e) {
     e.preventDefault();
 
@@ -309,12 +254,11 @@ function modaldelete(e) {
         lastname: $("#delName2").val(),
         age: $("#delAge").val(),
         email: $("#delEmail").val(),
-        // password: $("#editPassword").val(),
         roles: setRoles(Array.from(document.querySelector('#delRoles').selectedOptions)
             .map(option => option.value))
 
     }
-    console.log("deleteurl", ('/deleteUser/' + DELId))
+
     fetch('/deleteUser/' + DELId, {
         method: 'DELETE',
         headers: {

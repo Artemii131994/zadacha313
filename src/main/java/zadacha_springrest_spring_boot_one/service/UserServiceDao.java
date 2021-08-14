@@ -1,7 +1,6 @@
 package zadacha_springrest_spring_boot_one.service;
 
 
-
 import zadacha_springrest_spring_boot_one.model.Role;
 import zadacha_springrest_spring_boot_one.model.User;
 

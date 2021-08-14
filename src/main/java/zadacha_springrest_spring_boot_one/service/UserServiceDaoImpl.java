@@ -22,12 +22,11 @@ public class UserServiceDaoImpl implements UserServiceDao {
     private PasswordEncoder passwordEncoder;
 
 
-
     @Autowired
-    public UserServiceDaoImpl(UserDAO userDAO, RoleDAO roleDAO,PasswordEncoder passwordEncoder) {
+    public UserServiceDaoImpl(UserDAO userDAO, RoleDAO roleDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
         this.roleDAO = roleDAO;
-        this.passwordEncoder=passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -81,7 +80,7 @@ public class UserServiceDaoImpl implements UserServiceDao {
 
     @Override
     @Transactional
-    public User ByUserName(String s){
+    public User ByUserName(String s) {
         return userDAO.ByUserName(s);
     }
 }

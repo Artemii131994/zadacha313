@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import zadacha_springrest_spring_boot_one.service.UserServiceDao;
-import zadacha_springrest_spring_boot_one.service.UserServiceDaoImpl;
 
 import java.security.Principal;
 

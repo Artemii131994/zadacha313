@@ -1,7 +1,6 @@
 package zadacha_springrest_spring_boot_one.dao;
 
 
-
 import zadacha_springrest_spring_boot_one.model.User;
 
 import java.util.List;
