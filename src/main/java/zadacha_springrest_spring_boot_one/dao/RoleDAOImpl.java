@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import zadacha_springrest_spring_boot_one.model.Role;
 import zadacha_springrest_spring_boot_one.model.User;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -17,7 +16,6 @@ public class RoleDAOImpl implements RoleDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
-
 
     @Override
     public Role getByName(String name) {
@@ -36,7 +34,5 @@ public class RoleDAOImpl implements RoleDAO {
         }
         user.setRoles(roleSet);
         return roleSet;
-
     }
-
 }

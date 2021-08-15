@@ -9,7 +9,6 @@ import zadacha_springrest_spring_boot_one.dao.UserDAO;
 import zadacha_springrest_spring_boot_one.model.Role;
 import zadacha_springrest_spring_boot_one.model.User;
 
-
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +19,6 @@ public class UserServiceDaoImpl implements UserServiceDao {
     private UserDAO userDAO;
     private RoleDAO roleDAO;
     private PasswordEncoder passwordEncoder;
-
 
     @Autowired
     public UserServiceDaoImpl(UserDAO userDAO, RoleDAO roleDAO, PasswordEncoder passwordEncoder) {
@@ -74,7 +72,6 @@ public class UserServiceDaoImpl implements UserServiceDao {
     public void add(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.add(user);
-
 
     }
 

@@ -1,6 +1,8 @@
 package zadacha_springrest_spring_boot_one.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import zadacha_springrest_spring_boot_one.model.User;
@@ -20,33 +22,28 @@ public class RestMController {
 
     }
 
-
     @GetMapping("/allUsers")
-    public List<User> showAllUser(Model model) {
+    public ResponseEntity<List<User>> showAllUser(Model model) {
         model.addAttribute("allUser", userServiceDao.getAllUser());
-        return userServiceDao.getAllUser();
-    }
-
-    @GetMapping("/getUser/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userServiceDao.getUser(id);
+        List<User> users = userServiceDao.getAllUser();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping("/new")
-    public User saveUser(@RequestBody User user) {
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         userServiceDao.add(user);
-        return user;
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
     @PutMapping("/updateSave/{id}")
-    public User edit(@RequestBody User user) {
+    public ResponseEntity<User> edit(@RequestBody User user) {
         userServiceDao.update(user);
-        return user;
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteUser/{id}")
-    public void deleteUser(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long id) {
         userServiceDao.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

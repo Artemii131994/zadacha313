@@ -1,9 +1,7 @@
 package zadacha_springrest_spring_boot_one.dao;
 
-
 import org.springframework.stereotype.Repository;
 import zadacha_springrest_spring_boot_one.model.User;
-
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,10 +17,8 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getAllUser() {
         List<User> allUser = entityManager.createQuery("from User", User.class)
                 .getResultList();
-
         return allUser;
     }
-
 
     @Override
     public User getUser(Long id) {
@@ -52,5 +48,4 @@ public class UserDAOImpl implements UserDAO {
     public void add(User user) {
         entityManager.persist(user);
     }
-
 }
