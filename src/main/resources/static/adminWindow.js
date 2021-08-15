@@ -51,7 +51,7 @@ addPostForm.addEventListener('submit', (e) => {
 
         })
 
-    document.getElementById("editName").value = '',
+        document.getElementById("editName").value = '',
         document.getElementById("editName2").value = '',
         document.getElementById("editAge").value = '',
         document.getElementById("editEmail").value = '',
@@ -108,16 +108,6 @@ allUsers.addEventListener('click', (e) => {
                                 // DELETE
 
         if (delButtonIsPressed) {
-            let setRoles =(someRoles) => {
-                let roles = [];
-                if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-                    roles.push({id: 1, name: "ROLE_ADMIN", users: null, authority: "ROLE_ADMIN"});
-                }
-                if (someRoles.indexOf("ROLE_USER") >= 0) {
-                    roles.push({id: 2, name: "ROLE_USER", users: null, authority: "ROLE_USER"});
-                }
-                return roles;
-            }
 
             const parent = e.target.parentElement.parentElement;
 
@@ -142,17 +132,6 @@ allUsers.addEventListener('click', (e) => {
                                             //EDIT
 
     if(editButtonIsPressed){
-
-        let setRoles =(someRoles) => {
-            let roles = [];
-            if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-                roles.push({id: 1, name: "ROLE_ADMIN", users: null, authority: "ROLE_ADMIN"});
-            }
-            if (someRoles.indexOf("ROLE_USER") >= 0) {
-                roles.push({id: 2, name: "ROLE_USER", users: null, authority: "ROLE_USER"});
-            }
-            return roles;
-        }
 
             const parent = e.target.parentElement.parentElement;
 
